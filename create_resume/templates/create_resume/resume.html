@@ -1,0 +1,139 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block title %} My Resume {% endblock title %}
+
+{% block content %}
+
+    <div class="main-container" style="background:rgb(247, 247, 247);">
+        <div class="top-container">
+            <div class = "top-container-name name-spacing">
+                <h2>{{user.first_name }}&nbsp;{{ user.last_name}}</h2>
+            </div>
+            <div class = "top-container-address spaceing">
+                <p class="gmail">{{user.email}}</p>
+                <p class="number">+91 {{resume.mobile}}</p>
+                <p class="address">{{resume.address}}</p>
+            </div>
+            <div class = "top-container-download end-spacing">
+                {% comment %} <a href="#"><i class="fa fa-download">Download</i></i></a><br><br> {% endcomment %}
+                {% comment %} <a class="edit" href="{% url 'create_resume:update-identity' %}"><i class="fa fa-edit"></i></a> {% endcomment %}
+                {% comment %} <a class="delete" href="#"><i class="fa fa-trash"></i></a> {% endcomment %}
+            </div>
+        </div>
+        <div class="top-container">
+            <div class = "top-container-education name-spacing">
+                <p><b>QUALIFICATIONS</b></p>
+            </div>
+            <div class = "top-container-education-detail spaceing ">
+                {% for q in qualifications %}
+                    <p class="degree"><b>{{q.name}} &nbsp; {{q.location}}</b> 
+                    {% comment %} <a class="edit links" href="#"><i class="fa fa-edit"></i></a>
+                    <a class="delete links" href="#"><i class="fa fa-trash"></i></a> {% endcomment %}
+                    </p>
+                    <p class="duration">{{q.degree}} &nbsp; {{q.branch}}</p>
+                    <p class="duration">{{q.duration}}</p>
+                {% endfor %}
+                <a class="Add button"href="{% url 'create_resume:create-qualifications' %}"><spam> + </spam> Add qualification </a>
+            </div>
+            <div class = "top-container-download end-spacing">
+                {% comment %} <a class="edit" href="#"><i class="fa fa-edit"></i></a>
+                <a class="delete" href="#"><i class="fa fa-trash"></i></a> {% endcomment %}
+            </div>
+        </div>
+        <div class="top-container">
+            <div class = "top-container-jobs name-spacing">
+                <p><b>Experience</b></p>
+            </div>
+            <div class = "top-container-jobs-detail spaceing">
+                {% for e in experience %}
+                    <p><b>{{e.name}}</b></p>
+                    <p><b>{{e.position}}</b></p>
+                    <p>{{e.location}} &nbsp;  {{e.duration}}</p>
+                    <p></p>
+                    <p>{{e.desc}}</p>
+                {% endfor %}
+                <a class="Add button"href="{% url 'create_resume:create-experience' %}"><spam> + </spam> Add job </a>
+            </div>
+            <div class = "top-container-download end-spacing">
+                {% comment %} <a class="edit" href="#"><i class="fa fa-edit"></i></a>
+                <a class="delete" href="{% url 'create_resume:delete-experience' e.id %}"><i class="fa fa-trash"></i></a> {% endcomment %}
+            </div>  
+        </div>
+        <div class="top-container">
+            <div class = "top-container-internship name-spacing">
+            <p><b>INTERNSHIPS</b></p>
+            </div>
+                <div class = "top-container-internship-detail spaceing">
+                    {% for i in internship %}
+                        <p>{{i.name}}</p>
+                        <p><b>{{i.position}}</b></p>
+                        <p>{{i.location}} &nbsp;  {{i.duration}}</p>
+                        <p></p>
+                        <p>{{i.desc}}</p>
+                    {% endfor %}
+                    <a class="Add button"href="{% url 'create_resume:create-internship' %}"><spam> + </spam> Add internship </a>
+                </div>
+            <div class = "top-container-download end-spacing">
+            {% comment %} <a class="edit" href="#"><i class="fa fa-edit"></i></a>
+            <a class="delete" href="#"><i class="fa fa-trash"></i></a> {% endcomment %}
+            </div>
+        </div>
+        <div class="top-container">
+            <div class = "top-container-training name-spacing">
+            <p><b>CERTIFICATIONS</b></p>
+            </div>
+            <div class = "top-container-training-detail spaceing">
+                {% for c in certification %}
+                    <p>{{c.name}}</p>
+                    <p><b>{{c.company}}</b></p>
+                    <p>{{c.duration}}</p>
+                    <p></p>
+                    <p>{{c.desc}}</p>
+                {% endfor %}
+            <a class="Add button"href="{% url 'create_resume:create-certifications' %}"><spam> + </spam> Add Certification </a>
+            </div>
+            <div class = "top-container-download end-spacing">
+            {% comment %} <a class="edit" href="#"><i class="fa fa-edit"></i></a>
+            <a class="delete" href="#"><i class="fa fa-trash"></i></a> {% endcomment %}
+            </div>
+        </div>
+        <div class="top-container">
+            <div class = "top-container-project name-spacing">
+            <p><b>PROJECTS</b></p>
+            </div>
+            <div class = "top-container-project-detail spaceing">
+                {% for p in project %}
+                    <p>{{p.name}}</p>
+                    <p><b>{{p.duration}}</b></p>
+                    <p> {{p.desc}}</p>
+                    <p></p>
+                    <p>{{p.link}}</p>
+                {% endfor %}
+            <a class="Add button"href="{% url 'create_resume:create-projects' %}"><spam> + </spam> Add Project </a>
+            </div>
+            <div class = "top-container-download end-spacing">
+            {% comment %} <a class="edit" href="#"><i class="fa fa-edit"></i></a>
+            <a class="delete" href="#"><i class="fa fa-trash"></i></a> {% endcomment %}
+            </div>
+        </div>
+        <div class="top-container">
+            <div class = "top-container-skills name-spacing">
+            <p><b>TECHNICAL SKILLS</b></p>
+            </div>
+            <div class = "top-container-skills-detail spaceing">
+                {% for t in technical_skill %}
+                    <p>{{t.skill}}</p>
+                    <p>{{t.expertise}}</p>
+                {% endfor %}
+            
+            <a class="Add button"href="{% url 'create_resume:create-technical-skills' %}"><spam> + </spam> Add Technical Skill </a>
+            </div>
+            <div class = "top-container-download end-spacing">
+            {% comment %} <a class="edit" href="#"><i class="fa fa-edit"></i></a>
+            <a class="delete" href="#"><i class="fa fa-trash"></i></a> {% endcomment %}
+            </div>
+        </div>
+        
+    </div>
+        
+{% endblock content %}

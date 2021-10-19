@@ -1,0 +1,39 @@
+{% extends "home/index.html" %}
+{% block content %}
+<div class="cart">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-responsive">
+                <table class="table table-striped" style="width:1000px">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Position</th>
+                        <th scope="col">Company</th>
+                        <th scope="col">Job Type</th>
+                        <th scope="col">Start date</th>
+                        <th scope="col">Package</th>
+                        <th scope="col">Apply by</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for j in job %}
+                    <tr>
+                        <td>{{ j.position }}</td>
+                        <td>{{ j.company }} </td>
+                        <td>{{ j.job_type }}</td>
+                        <td>{{ j.start_date }}</td>
+                        <td>{{ j.package }} </td>
+                        <td>{{ j.apply_by }} </td>
+                        <td><a class="btn btn-success" href="{% url 'home:jobDetail' j.id %}">View</a></td>
+                        <td><a class="btn btn-success" href="{% url 'home:jobDetail' j.id %}">Delete</a></td>
+                    </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,31 @@
+/* css for resume */
+.main-container {
+    border: 1px solid #EEE;
+    box-sizing: border-box;
+    border-radius: 6px;
+    padding: 32px 24px 48px 24px;
+    max-width: 900px;
+    background-color: rgb(247, 247, 247);
+    
+}
+.top-container {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #eee;
+    padding: 25px 0 25px 0;
+}
+.name-spacing{
+    width: 250px;
+    padding: 0 20px 0 0;
+}
+.spaceing {
+    width: 500px;
+}
+.end-spacing{
+    width:150px;
+}
+a.edit,
+a.delete {
+    font-size: 25px;
+    margin: 0 10px;
+}

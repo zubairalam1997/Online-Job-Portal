@@ -1,0 +1,49 @@
+{% extends "home/index.html" %}
+{% block content %}
+<div class="cart">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-responsive">
+                <table class="table table-striped" style="width:1000px">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Phone number</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Position</th>
+                            <th scope="col">Resume</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Update status</th>
+                            {% comment %} <th scope="col"></th> {% endcomment %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for j in recieve %}
+                            <tr>
+                                <td>{{ j.first_name }}</td>
+                                <td>{{ j.last_name }} </td>
+                                <td>{{ j.mobile }}</td>
+                                <td>{{ j.email }}</td>
+                                <td>{{j.position}}</td>
+                                <td><a href="{% url 'home:open_resume' j.id %}">{{j.resume_file}}</a></td>
+                                <td>{{j.status}}</td>
+                                <td>
+                                    <form method="POST" action="{% url 'home:update_status' j.id %}" style="display: flex;">
+                                        {% csrf_token %}
+                                        <select class="form-control" name="status" style="width:110px; margin-right:10px">
+                                            <option value="Hire" selected="selected">Hired</option>
+                                            <option value="Reject">Rejected</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,45 @@
+{% extends 'home/index.html' %}
+{% load has_group %}
+
+
+{% block title %} Job Detail {% endblock title %}
+
+{% block content %}
+
+    <div style="margin-bottom: 20px">
+        <!--Main layout-->
+        <main class="mt-3 pt-4">
+            <div class="container dark-grey-text">
+                <div class="row wow fadeIn">
+                    <div class="card mb-3" style="height: fit-content; border-radius:15px; width:700px; max-width:fixed;  background-color: #f5f5f5; box-shadow: 0px 0px 1px #000000; padding: 10px 10px 10px 10px">
+                        <div class="col">
+                            <div style="margin-left: 10px">
+                                <h2 style="opacity:97%"><b>{{ job.position }}</b></h2>
+                                <h3 style="opacity:80%"><b>{{ job.company }}</b></h3>
+                                <label style="margin-right:50px"><b>Start date:</b> {{job.start_date}} &nbsp; &nbsp;</label> 
+                                
+                                <label style="margin-right:50px"><b>Apply by:</b>{{job.apply_by}} &nbsp; &nbsp;</label> 
+                                <label><b>Package:</b>{{job.package}} &nbsp; &nbsp;</label><br>
+                                <label><b>{{job.job_type}}</b></label><br>
+                                <label ><b>About company:</b></label> 
+                                <p style="margin-bottom:10px">{{job.about_company}}<p><br>
+                                <label><b>Job description:</b></label>
+                                <p style="margin-bottom:10px"> {{job.job_description}}<br>
+                                <label><b>Eligibility:</b></label> 
+                                <p style="margin-bottom:10px">{{job.eligibility}}</p><br>
+                                <label><b>Perks:</b></label> 
+                                <p style="margin-bottom:10px">{{job.perks}}</p><br>
+                                <label><b>Openings:</b> {{job.openings}} </label><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        {% if user.is_authenticated %}
+                <a href="" class="btn btn-success btn-md my-0 p" style="margin-right:30px; top:10px; margin-left:20px; width:100px; margin-bottom:40px;" disabled>&nbsp; Applied! &nbsp;</a>                
+                <a href="{% url 'home:application_view' %}" class="btn btn-secondary btn-md my-2 p" style="  margin-bottom:10px; width:100px">&nbsp; Back &nbsp;</a>
+        {% endif %}
+        
+    </div>
+{% endblock content %}

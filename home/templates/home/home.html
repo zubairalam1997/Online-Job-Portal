@@ -1,0 +1,64 @@
+{% extends 'home/index.html' %}
+
+{% block title %} HOME {% endblock title %}
+
+{% block content %}
+
+    <div class="container" style='display: flex; justify-content: center; align-items: center;'>
+        <div class='d-flex'>
+            <div class="d-flex justify-content-center">
+                <form method='POST' action="{% url 'home:filter_jobs' %}">
+                    <div class='row' style="margin-top:7%; margin-bottom:40px">
+                        {% csrf_token %}
+                        <div class='col'>
+                            <input class="form-control" name='position' style="width:300px" type='text' placeholder='Job title'>
+                        </div>
+                        <div class='col'>
+                            <input class="form-control" name='location' style="width:300px" type='text' placeholder='Location'>
+                        </div>
+                        <div class='col'>
+                            <button type='submit' style="width:100px" text='submit' class='btn btn-primary'>Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-responsive" style="overflow-y:auto;">
+                <table class="table table-striped" style="width:1000px">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Position</th>
+                        <th scope="col">Company</th>
+                        <th scope="col">Job Type</th>
+                        <th scope="col">Start date</th>
+                        <th scope="col">Package</th>
+                        <th scope='col'>Location</th>
+                        <th scope="col">Apply by</th>
+                        <th scope="col">Apply here</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for job in jobs %}
+                    <tr>
+                        <td>{{ job.position }}</td>
+                        <td>{{ job.company }} </td>
+                        <td>{{ job.job_type }}</td>
+                        <td>{{ job.start_date }}</td>
+                        <td>{{ job.package }} </td>
+                        <td>{{ job.location }}</td>
+                        <td>{{ job.apply_by }} </td>
+                        <td><a class="btn btn-success" href="{% url 'home:jobDetail' job.id %}">View</a></td>
+                    </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+    
+{% endblock content %}
