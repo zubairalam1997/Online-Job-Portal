@@ -7,18 +7,34 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import CreateView
 from django.contrib import messages
 from home.admin import resume
+from django.db.models import Q
 # from django.contrib.auth.mixins import LoginRequiredMixin
 
 from home.models import Apply_for_job, Job, Recieve_job_applications, Resume
 
 # Create your views here.
-def home_page(request): 
-    jobs_feed = Job.objects.all()      
+def home_page(request):
+    position=" "
+    location=" "
+    context={}
     user = request.user
-    context = {
-        'user':user,
-        'jobs':jobs_feed
-    } 
+    context['user']=user
+    if request.GET:
+        position=request.GET['positionq']
+        location=request.GET['locationq']
+        print('position',position)
+        print('location',location)
+        context[position]=str(position)
+        context[location]=str(location)
+        # context['query']=str(query)
+        jobs_feed=Job.objects.filter(Q(position=position) | Q(position__icontains=position) | Q(location=location) | Q(location__icontains=location)).order_by('location')
+        print(jobs_feed)
+        context['jobs']=jobs_feed
+        return render(request,'home/home.html',context)  
+
+    jobs_feed = Job.objects.all()      
+    context['jobs']=jobs_feed
+
     return render(request, 'home/home.html', context)
 
 def index(request):
@@ -91,7 +107,7 @@ def application_view(request):
     return render(request, 'home/applications.html', {'jobs':jobs})
 
 def applied_jobdeatils_view(request, pk):
-    job = Job.objects.get(pk=pk)
+    job = Job.objects.filter(pk=pk).first()
     return render(request, 'home/applied_job_detail.html', {'job':job})
 
 def recieve_candidates_applications(request):

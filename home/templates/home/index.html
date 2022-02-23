@@ -85,12 +85,15 @@
         </a> {% endcomment %}
         <hr class="sidebar-divider">
         <a href="/"> HOME </a>
+
         {% comment %} <a href="test/" method='POST'> test </a>   {% endcomment %}
 
         {% if user.is_authenticated %}
+        <li><a href="{% url 'allblog' %}" class="mr-2 text-light">Blog</a></li>
           {% if request.user|has_group:"Employer" %}
             {% comment %} <li><a href="{% url 'home:home_page' %}" class="mr-2 text-light">Profile</a></li> {% endcomment %}
             <li><a href="{% url 'home:addJob' %}" class="mr-2 text-light">Create Jobs</a></li>
+            
             <li><a href="{% url 'home:viewJobs' %}" class="mr-2 text-light">View Jobs</a></li>
             <li><a href="{% url 'home:candidates_applications_view' %}" class="mr-2 text-light">Applications</a></li>
             {% comment %} <li><a href="{% url 'home:home_page' %}" class="mr-2 text-light">Hired</a></li> {% endcomment %}
@@ -118,7 +121,7 @@
     <div id="content", name="content", class="main">
       <div class="row justify-content-center">
         <div class="col-8">
-          <h1 class="mt-2"> WELCOME TO Auto-Hire </h1>
+          <!-- <h1 class="mt-2"> WELCOME TO Auto-Hire </h1> -->
           <hr class="mt-0 mb-4">
         </div>
         <div style='margin-left:50px'>

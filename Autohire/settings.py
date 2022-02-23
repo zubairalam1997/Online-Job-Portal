@@ -42,8 +42,10 @@ INSTALLED_APPS = [
     'home',
     'crispy_forms',
     'create_resume',
+    'blog',
     
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

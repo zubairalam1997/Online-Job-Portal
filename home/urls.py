@@ -29,7 +29,7 @@ urlpatterns = [
     path('job_applications/', views.application_view, name='application_view'),
     
     # detail view of applied job applications
-    path('applied_jobdeatils_view/<int:pk>', views.applied_jobdeatils_view, name='applied_jobdeatils_view'),
+    path('applied_jobdeatils_view/<int:pk>/', views.applied_jobdeatils_view, name='applied_jobdeatils_view'),
     
     # list of candidate's appplications for a job
     path('candidates_applications/', views.recieve_candidates_applications, name="candidates_applications_view"),

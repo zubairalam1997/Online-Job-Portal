@@ -7,17 +7,17 @@
     <div class="container" style='display: flex; justify-content: center; align-items: center;'>
         <div class='d-flex'>
             <div class="d-flex justify-content-center">
-                <form method='POST' action="{% url 'home:filter_jobs' %}">
+                <form >
                     <div class='row' style="margin-top:7%; margin-bottom:40px">
                         {% csrf_token %}
                         <div class='col'>
-                            <input class="form-control" name='position' style="width:300px" type='text' placeholder='Job title'>
+                            <input class="form-control" id= "searchPosition" name='positionq' style="width:300px" type='text' placeholder='Job title'>
                         </div>
                         <div class='col'>
-                            <input class="form-control" name='location' style="width:300px" type='text' placeholder='Location'>
+                            <input class="form-control" id="searchLocation" name='locationq' style="width:300px" type='text' placeholder='Location'>
                         </div>
                         <div class='col'>
-                            <button type='submit' style="width:100px" text='submit' class='btn btn-primary'>Search</button>
+                            <button type='submit' style="width:100px" text='submit' id="search" class='btn btn-primary'>Search</button>
                         </div>
                     </div>
                 </form>
@@ -60,5 +60,9 @@
         </div>
     </div>
 </div>
-    
+<script type="text/javascript">
+    document.getElementById("searchPosition").value="{{position}}"
+    document.getElementById("searchLocation").value="{{location}}"
+
+  </script>
 {% endblock content %}
