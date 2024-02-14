@@ -8,6 +8,3 @@ selenium==3.141.0
 
 
 
-{% comment %} https://chromedriver.chromium.org/downloads {% endcomment %}
-{% comment %} $ export PATH="$PATH:/path/to/chromedriver" {% endcomment %}
-{% comment %} https://www.youtube.com/watch?v=XnSQ6sRGKzI {% endcomment %}

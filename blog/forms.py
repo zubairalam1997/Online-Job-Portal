@@ -1,6 +1,7 @@
 from django.forms import ModelForm,forms
 from .models import *
-from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
+# from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
+from bootstrap_datepicker_plus.widgets import DateTimePickerInput,TimePickerInput
 
 
 class AddBlogForm(ModelForm):
